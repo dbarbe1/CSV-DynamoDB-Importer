@@ -50,7 +50,7 @@ exports.handler = async function(event, context) {
        rowpromises.push(dynamoDBPut(json,event.tablename));
     });
     
-    Promise.allSettled(rowpromises)
+    await Promise.allSettled(rowpromises)
       .then((result) => {
         result.forEach(element => {
           if(element.status == 'fulfilled'){
